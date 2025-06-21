@@ -1,14 +1,19 @@
-# 🔧 ManualDI Note – Kotlin Android Project
+# 🔧 ManualDINote – Manual Dependency Injection in Android (Kotlin)
 
-This project demonstrates how to implement **manual dependency injection (DI)** using different patterns in Android. The goal is to provide hands-on understanding of core concepts like:
+![Kotlin](https://img.shields.io/badge/Kotlin-1.9-blueviolet?logo=kotlin)
+![Android](https://img.shields.io/badge/Platform-Android-green?logo=android)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Status](https://img.shields.io/badge/Project-Learning-informational)
 
-- Manual DI via `Application` class
-- Factory Design Pattern
-- Interface-based DI and abstraction
+This project demonstrates how to implement **manual dependency injection (DI)** in Android using Kotlin, **without third-party libraries** like Dagger or Hilt. You'll learn three key techniques:
+
+1. ✅ Application-level DI
+2. 🏭 Factory pattern-based DI
+3. 🧩 Interface-based DI
 
 ---
 
-## 🗂️ Project Structure Overview
+## 🗂️ Project Structure
 
 ```
 ManualDINote/
@@ -37,49 +42,74 @@ ManualDINote/
 
 ---
 
-## 🔍 Modules Breakdown
+## 🔍 Module Overview
 
-### 📦 `applicationlevel` — [Read More →](./app/src/main/java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
+### 1. 🚘 `applicationlevel` — [Read More →](./app/src/main/java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
 
-- Uses **Application class** to provide a `Car` object with `Engine` and `Wheel` dependencies.
-- Teaches the concept of **global application state**.
-- Suitable for small-scale apps to maintain app-wide shared instances.
+Implements DI using the `Application` class to create and inject shared instances (e.g., Car with Engine and Wheel).
 
----
+#### 🔄 Flowchart
 
-### 🏭 `factory` — [Read More →](./app/src/main/java/com/example/manualdinote/factory/FACTORY.md)
-
-- Implements the **Factory Pattern** to create objects (`Downloader`, `Request`, `Executor`, etc.).
-- Centralizes object creation to avoid repeating code across consumers.
-- Ideal to understand **centralized construction logic** before moving to libraries like Dagger/Hilt.
-
----
-
-### 🧩 `interfaces` — [Read More →](./app/src/main/java/com/example/manualdinote/interfaces/INTERFACES.md)
-
-- Demonstrates **Interface-based DI**.
-- `Main` depends on `One` (interface), allowing for easy swapping of implementations.
-- `AppModule` acts as a central provider object.
-- Best practice for decoupling and writing testable code.
+```plaintext
+   [Application (BaseApp)]
+             ↓
+           [Car]
+         ↙       ↘
+     [Engine]   [Wheel]
+```
 
 ---
 
-## ✅ Goals of This Project
+### 2. 🏭 `factory` — [Read More →](./app/src/main/java/com/example/manualdinote/factory/FACTORY.md)
 
-- Understand core DI principles before using heavy libraries.
-- Explore design patterns (Factory, Singleton, Abstraction).
-- Encourage clean code architecture and modularization.
+Implements the **Factory Pattern** to build a chain of dependencies (Downloader ← Request ← HttpClient + Executor).
+
+#### 🔄 Flowchart
+
+```plaintext
+ [DownloaderFactory]
+          ↓
+      [Downloader]
+           ↓
+        [Request]
+       ↙         ↘
+[HttpClient]   [Executor]
+```
 
 ---
 
-## 🧠 Key Learnings
+### 3. 🧩 `interfaces` — [Read More →](./app/src/main/java/com/example/manualdinote/interfaces/INTERFACES.md)
 
-| Concept             | Applied In         | Description |
-|---------------------|--------------------|-------------|
-| Manual DI via Application | `applicationlevel` | For global singleton access |
-| Factory Pattern     | `factory`          | Object creation centralized |
-| Interface Abstraction | `interfaces`     | Swap logic via interface |
-| Module Object (Singleton) | `AppModule`  | Simple DI container |
+Implements **interface-based DI** for decoupled, testable logic with a singleton object (`AppModule`).
+
+#### 🔄 Flowchart
+
+```plaintext
+ [AppModule]
+      ↓
+    [Main]
+      ↓
+[One Interface] ← [ImplementOne]
+```
+
+---
+
+## 🎯 Purpose
+
+- Gain hands-on experience with the **core concepts of DI**
+- Learn to decouple classes for **testability** and **maintainability**
+- Build a foundation for using DI frameworks like **Dagger/Hilt**
+
+---
+
+## 🧠 Key Concepts
+
+| Concept                | Description |
+|------------------------|-------------|
+| Application-level DI   | Use of `Application` to provide shared instances |
+| Factory Pattern        | Encapsulates object creation logic |
+| Interface-based DI     | Enables flexibility and decoupling |
+| Singleton (AppModule)  | Provides a central source of dependencies |
 
 ---
 
@@ -95,10 +125,10 @@ ManualDINote/
 ## 👨‍💻 Author
 
 **Kaustubh S.D.**  
-Built for learning the foundations of dependency management in Android.
+Crafted with ❤️ using Kotlin and Android Studio.
 
 ---
 
 ## 📄 License
 
-MIT License / Free to use and modify for educational purposes.
+MIT License — Free to use and modify for educational purposes.
