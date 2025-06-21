@@ -1,60 +1,85 @@
-# 📦 Manual Dependency Injection in Android (Kotlin)
+# 🔧 ManualDI Note – Kotlin Android Project
 
-This project demonstrates how to implement **manual dependency injection** in Android using Kotlin. The goal is to understand and explore how dependency management works **without relying on third-party libraries** like Dagger, Hilt, or Koin.
+This project demonstrates how to implement **manual dependency injection (DI)** using different patterns in Android. The goal is to provide hands-on understanding of core concepts like:
+
+- Manual DI via `Application` class
+- Factory Design Pattern
+- Interface-based DI and abstraction
 
 ---
 
-## 🗂️ Project Structure
+## 🗂️ Project Structure Overview
 
 ```
-app/
-├── manifests/
-│   └── AndroidManifest.xml
-├── kotlin+java/
-│   └── com.example.manualdinote/
-│       ├── applicationlevel/
-│       │   ├── BaseApp.kt
-│       │   ├── Car.kt
-│       │   └── [📄 APPLICATIONLEVEL.md](./kotlin+java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
-│       ├── factory/
-│       │   ├── Downloading.kt
-│       │   └── [📄 FACTORY.md](./kotlin+java/com/example/manualdinote/factory/FACTORY.md)
-│       ├── ui.theme/
-│       └── MainActivity.kt
-└── res/
+ManualDINote/
+├── app/
+│   └── src/
+│       └── main/
+│           └── java/
+│               └── com/
+│                   └── example/
+│                       └── manualdinote/
+│                           ├── applicationlevel/
+│                           │   ├── BaseApp.kt
+│                           │   ├── Car.kt
+│                           │   └── 📘 [APPLICATIONLEVEL.md](./app/src/main/java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
+│                           ├── factory/
+│                           │   ├── Downloading.kt
+│                           │   └── 📘 [FACTORY.md](./app/src/main/java/com/example/manualdinote/factory/FACTORY.md)
+│                           ├── interfaces/
+│                           │   ├── BaseApp.kt
+│                           │   ├── interfaces.kt
+│                           │   └── 📘 [INTERFACES.md](./app/src/main/java/com/example/manualdinote/interfaces/INTERFACES.md)
+│                           └── ui/
+│                               └── MainActivity.kt
+└── README.md
 ```
 
 ---
 
 ## 🔍 Modules Breakdown
 
-### 1. `applicationlevel` — [📖 APPLICATIONLEVEL.md](./kotlin+java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
+### 📦 `applicationlevel` — [Read More →](./app/src/main/java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
 
-- Demonstrates how to use the **Application class** to maintain a global state.
-- Implements basic manual dependency injection by initializing and providing a `Car` instance.
-- Explains:
-   - What is Application class?
-   - What is a global state?
-   - Why use it for dependency injection?
+- Uses **Application class** to provide a `Car` object with `Engine` and `Wheel` dependencies.
+- Teaches the concept of **global application state**.
+- Suitable for small-scale apps to maintain app-wide shared instances.
 
 ---
 
-### 2. `factory` — [📖 FACTORY.md](./kotlin+java/com/example/manualdinote/factory/FACTORY.md)
+### 🏭 `factory` — [Read More →](./app/src/main/java/com/example/manualdinote/factory/FACTORY.md)
 
-- Demonstrates the **Factory Design Pattern**.
-- The `DownloaderFactory` creates and wires dependencies (`HttpClient`, `Executor`, `Request`, and `Downloader`).
-- Explains:
-   - What is the Factory pattern?
-   - Benefits of using a factory for object creation.
-   - Best practices and usage examples.
+- Implements the **Factory Pattern** to create objects (`Downloader`, `Request`, `Executor`, etc.).
+- Centralizes object creation to avoid repeating code across consumers.
+- Ideal to understand **centralized construction logic** before moving to libraries like Dagger/Hilt.
 
 ---
 
-## 🎯 Purpose of This Project
+### 🧩 `interfaces` — [Read More →](./app/src/main/java/com/example/manualdinote/interfaces/INTERFACES.md)
 
-- Build a solid understanding of how dependency injection works under the hood.
-- Learn design patterns like **Factory** and **Manual DI via Application class**.
-- Prepare for integrating real-world DI libraries (Hilt/Dagger) by first learning the fundamentals.
+- Demonstrates **Interface-based DI**.
+- `Main` depends on `One` (interface), allowing for easy swapping of implementations.
+- `AppModule` acts as a central provider object.
+- Best practice for decoupling and writing testable code.
+
+---
+
+## ✅ Goals of This Project
+
+- Understand core DI principles before using heavy libraries.
+- Explore design patterns (Factory, Singleton, Abstraction).
+- Encourage clean code architecture and modularization.
+
+---
+
+## 🧠 Key Learnings
+
+| Concept             | Applied In         | Description |
+|---------------------|--------------------|-------------|
+| Manual DI via Application | `applicationlevel` | For global singleton access |
+| Factory Pattern     | `factory`          | Object creation centralized |
+| Interface Abstraction | `interfaces`     | Swap logic via interface |
+| Module Object (Singleton) | `AppModule`  | Simple DI container |
 
 ---
 
@@ -62,6 +87,7 @@ app/
 
 - [Android Application Class – Official Docs](https://developer.android.com/reference/android/app/Application)
 - [Factory Design Pattern – GeeksforGeeks](https://www.geeksforgeeks.org/design-patterns-set-2-factory-method/)
+- [Kotlin Interfaces](https://kotlinlang.org/docs/interfaces.html)
 - [Dependency Injection in Android](https://developer.android.com/training/dependency-injection)
 
 ---
@@ -69,10 +95,10 @@ app/
 ## 👨‍💻 Author
 
 **Kaustubh S.D.**  
-Crafted with ❤️ using Kotlin and Android Studio.
+Built for learning the foundations of dependency management in Android.
 
 ---
 
-## 📌 License
+## 📄 License
 
-This project is for learning purposes and does not include a specific license.
+MIT License / Free to use and modify for educational purposes.
