@@ -12,12 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.manualdinote.applicationlevel.BaseApp
+import com.example.manualdinote.factory.DownloaderFactory
 import com.example.manualdinote.ui.theme.ManualDINoteTheme
 
 class MainActivity : ComponentActivity() {
 
     private lateinit var baseApp: BaseApp
 
+    private val download = DownloaderFactory.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,8 @@ class MainActivity : ComponentActivity() {
 
             baseApp = BaseApp()
             baseApp.car.getCar()
+
+            download.getDownload()
 
         }
     }

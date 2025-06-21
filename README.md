@@ -1,80 +1,78 @@
-# ManualDINote
+# 📦 Manual Dependency Injection in Android (Kotlin)
 
-// ...existing code...
+This project demonstrates how to implement **manual dependency injection** in Android using Kotlin. The goal is to understand and explore how dependency management works **without relying on third-party libraries** like Dagger, Hilt, or Koin.
 
-## Dependency Injection (DI) - Detailed Notes
+---
 
-### What is Dependency Injection?
+## 🗂️ Project Structure
 
-- **Dependency Injection (DI)** is a design pattern used to implement Inversion of Control (IoC).
-- It allows a class to receive its dependencies from external sources rather than creating them itself.
-- This makes code more modular, testable, and maintainable.
+```
+app/
+├── manifests/
+│   └── AndroidManifest.xml
+├── kotlin+java/
+│   └── com.example.manualdinote/
+│       ├── applicationlevel/
+│       │   ├── BaseApp.kt
+│       │   ├── Car.kt
+│       │   └── [📄 APPLICATIONLEVEL.md](./kotlin+java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
+│       ├── factory/
+│       │   ├── Downloading.kt
+│       │   └── [📄 FACTORY.md](./kotlin+java/com/example/manualdinote/factory/FACTORY.md)
+│       ├── ui.theme/
+│       └── MainActivity.kt
+└── res/
+```
 
-### Why Use Dependency Injection?
+---
 
-- **Decoupling:** Reduces tight coupling between classes.
-- **Testability:** Makes unit testing easier by allowing mock dependencies.
-- **Reusability:** Promotes reuse of components.
-- **Maintainability:** Easier to manage and update dependencies.
+## 🔍 Modules Breakdown
 
-### Types of Dependency Injection
+### 1. `applicationlevel` — [📖 APPLICATIONLEVEL.md](./kotlin+java/com/example/manualdinote/applicationlevel/APPLICATIONLEVEL.md)
 
-1. **Constructor Injection**
-    - Dependencies are provided through a class constructor.
-    - Most common and recommended method.
+- Demonstrates how to use the **Application class** to maintain a global state.
+- Implements basic manual dependency injection by initializing and providing a `Car` instance.
+- Explains:
+   - What is Application class?
+   - What is a global state?
+   - Why use it for dependency injection?
 
-2. **Setter Injection**
-    - Dependencies are set through public setters or properties after object creation.
-    - Useful when dependency is optional.
+---
 
-3. **Interface Injection**
-    - The dependency provides an injector method that will inject the dependency into any client passed to it.
+### 2. `factory` — [📖 FACTORY.md](./kotlin+java/com/example/manualdinote/factory/FACTORY.md)
 
-### Manual Dependency Injection
+- Demonstrates the **Factory Design Pattern**.
+- The `DownloaderFactory` creates and wires dependencies (`HttpClient`, `Executor`, `Request`, and `Downloader`).
+- Explains:
+   - What is the Factory pattern?
+   - Benefits of using a factory for object creation.
+   - Best practices and usage examples.
 
-- You create and provide dependencies manually in your code.
-- No external frameworks are used.
-- Good for small projects or learning purposes.
+---
 
-#### Example Flow (Conceptual, No Code)
+## 🎯 Purpose of This Project
 
-1. **Define Dependencies:**  
-   Identify what classes or objects your class depends on.
+- Build a solid understanding of how dependency injection works under the hood.
+- Learn design patterns like **Factory** and **Manual DI via Application class**.
+- Prepare for integrating real-world DI libraries (Hilt/Dagger) by first learning the fundamentals.
 
-2. **Provide Dependencies:**  
-   Pass dependencies via constructor or setter when creating the object.
+---
 
-3. **Use Dependencies:**  
-   The class uses the provided dependencies for its operations.
+## 🔗 References
 
-### Benefits of Manual DI
+- [Android Application Class – Official Docs](https://developer.android.com/reference/android/app/Application)
+- [Factory Design Pattern – GeeksforGeeks](https://www.geeksforgeeks.org/design-patterns-set-2-factory-method/)
+- [Dependency Injection in Android](https://developer.android.com/training/dependency-injection)
 
-- Full control over object creation.
-- No external libraries required.
-- Good for understanding the basics of DI.
+---
 
-### Drawbacks of Manual DI
+## 👨‍💻 Author
 
-- Can become complex as the project grows.
-- Managing object graphs manually is error-prone.
-- Not scalable for large applications.
+**Kaustubh S.D.**  
+Crafted with ❤️ using Kotlin and Android Studio.
 
-### Best Practices
+---
 
-- Prefer constructor injection for required dependencies.
-- Use interfaces or abstract classes for dependencies to allow flexibility.
-- Avoid service locators or static access to dependencies.
+## 📌 License
 
-### Summary
-
-- DI is a key pattern for writing clean, testable, and maintainable code.
-- Manual DI is a good starting point for learning.
-- For larger projects, consider using DI frameworks (like Dagger, Hilt, Koin, etc.).
-
-### Further Reading
-
-- [Martin Fowler on Dependency Injection](https://martinfowler.com/articles/injection.html)
-- [Android Developer Guide: Dependency Injection](https://developer.android.com/training/dependency-injection)
-
-// ...existing code...
-
+This project is for learning purposes and does not include a specific license.
